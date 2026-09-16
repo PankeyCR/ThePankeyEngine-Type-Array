@@ -258,6 +258,82 @@ namespace pankey{
 				return i_array;
 			}
 
+			CharArray toCharArray(const unsigned long long& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const unsigned long long&");
+				CharArrayPrimitiveLog(pankey_Log_Statement, "toCharArray", "a_value");
+
+				int i_size = 1;
+				unsigned long long i_counter = a_value;
+				while(i_counter >= 10){
+					i_counter /= 10;
+					i_size++;
+				}
+
+				CharArray i_array;
+				i_array.createArrayFast(i_size);
+				i_array.setLength(i_size);
+
+				// Filled from the last digit so no exponent is ever needed.
+				unsigned long long i_value = a_value;
+				for(int x = i_size - 1; x >= 0; x--){
+					i_array.setFast(x, static_cast<char>((i_value % 10) + 48));
+					i_value /= 10;
+				}
+
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
+			CharArray toCharArray(const long long& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const long long&");
+				if(a_value >= 0){
+					CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+					return toCharArray(static_cast<unsigned long long>(a_value));
+				}
+				// Negated as unsigned so the most negative value cannot overflow.
+				const unsigned long long i_magnitude =
+					static_cast<unsigned long long>(-(a_value + 1)) + 1ULL;
+				CharArray i_digits = toCharArray(i_magnitude);
+
+				CharArray i_array;
+				i_array.createArrayFast(i_digits.length() + 1);
+				i_array.setLength(i_digits.length() + 1);
+				i_array.setFast(0, '-');
+				for(int x = 0; x < i_digits.length(); x++){
+					i_array.setFast(x + 1, i_digits.getFast(x));
+				}
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
+			CharArray toCharArray(const unsigned int& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const unsigned int&");
+				CharArray i_array = toCharArray(static_cast<unsigned long long>(a_value));
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
+			CharArray toCharArray(const unsigned long& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const unsigned long&");
+				CharArray i_array = toCharArray(static_cast<unsigned long long>(a_value));
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
+			CharArray toCharArray(const unsigned short& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const unsigned short&");
+				CharArray i_array = toCharArray(static_cast<unsigned long long>(a_value));
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
+			CharArray toCharArray(const short& a_value){
+				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "const short&");
+				CharArray i_array = toCharArray(static_cast<int>(a_value));
+				CharArrayPrimitiveLog(pankey_Log_EndMethod, "toCharArray", "");
+				return i_array;
+			}
+
 			CharArray toCharArray(float a_value, int a_decimal_size){
 				CharArrayPrimitiveLog(pankey_Log_StartMethod, "toCharArray", "float, int");
 
