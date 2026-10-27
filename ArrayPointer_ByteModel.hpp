@@ -12,7 +12,7 @@ namespace pankey{
 			struct ArrayPointer_ByteModel{
 				using ALLOCATOR_TYPE = pankey::Memory::Allocator::MemoryAllocator;
 				using VALUE_TYPE = Byte;
-				using SIZE_TYPE = Byte;
+				using SIZE_TYPE = int;
 			};
 
 		}

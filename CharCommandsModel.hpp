@@ -11,7 +11,7 @@ namespace pankey{
 
 			struct CharCommandsModel{
 				using ALLOCATOR_TYPE = pankey::Memory::Allocator::MemoryAllocator;
-				using VALUE_TYPE = CharPointer;
+				using VALUE_TYPE = pankey::Utility::Test::CharPointer;
 				using SIZE_TYPE = int;
 			};
 

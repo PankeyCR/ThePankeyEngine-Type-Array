@@ -18,7 +18,7 @@ namespace pankey{
 
 		namespace Array{
 
-			CharArray toCharArray(const CharPointer& a_charpointer){
+			CharArray toCharArray(const pankey::Utility::Test::CharPointer& a_charpointer){
 				to_CharArray_CharPointerLog(pankey_Log_StartMethod, "toCharArray", "const CharPointer&");
 				if(a_charpointer.isEmpty()){
 					to_CharArray_CharPointerLog(pankey_Log_EndMethod, "toCharArray", "a_charpointer.isEmpty()");
@@ -33,10 +33,10 @@ namespace pankey{
 				return i_array;
 			}
 
-			CharPointer toCharPointer(const CharArray& a_chararray){
+			pankey::Utility::Test::CharPointer toCharPointer(const CharArray& a_chararray){
 				to_CharArray_CharPointerLog(pankey_Log_StartMethod, "toCharPointer", "const CharArray&");
 				to_CharArray_CharPointerLog(pankey_Log_EndMethod, "toCharPointer", "");
-				return CharPointer(a_chararray.getArrayPointer(), a_chararray.length());
+				return pankey::Utility::Test::CharPointer(a_chararray.getArrayPointer(), a_chararray.length());
 			}
 		}
 		
